@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Task 3</title>
+</head>
+
+<body>
+	<script>
+		// Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
+		//створюємо масив
+		const studentNumbers = parseInt(prompt('Введіть кількість учнів'))
+		function inputArray(number) {
+			let arr = []
+			for(let i = 0; i < number; i++) {
+				let name = prompt(`Введіть ім\'я ${i+1} учня`)
+				arr.push(name)
+			}
+			return arr
+		}
+		let studentsNames = inputArray(studentNumbers)
+		//перевіряємо кількість 'Іван'
+		function getIvan (arr) {
+			let counterIvan = 0
+			for (let i = 0; i < arr.length; i++) {
+				if (arr[i] === "Іван") counterIvan++
+			}
+			return counterIvan
+		}
+		const numbersIvan = getIvan(studentsNames)
+		document.write(`<p>Кількість учнів з ім'ям Іван: <span>${numbersIvan}</span>.</p>`)
+	</script>
+</body>
+</html>

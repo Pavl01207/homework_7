@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Task 1</title>
+</head>
+
+<body>
+	<script>
+		/*Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він відноситься 
+		(відмінник, двійочник (має хоча би одну двійку), 
+		хорошист (оцінки добре і відмінно), трійочник(є хоча би одна трійка)).*/
+		//отримуємо кількість предметів
+		const numberSubjects = parseInt(prompt('Введіть кількість предметів'))
+		//створюємо і наповнюємо масив
+		function inputArray(number) {
+			let arr = []
+			for (let i = 0; i < number; i++) {
+				const sudjectGrade = parseInt(prompt(`Оцінка за предмет`))
+				arr.push(sudjectGrade)
+			}
+			return arr
+		}
+		const studentSubjects = inputArray(numberSubjects)
+		//функція для знаходження середної оцінки
+		function getAverageGrade(arr) {
+			let sum = 0
+			for (let k = 0; k < arr.length; k++) {
+				sum += arr[k]
+			}
+			return (sum / arr.length).toFixed(2)
+		}
+		//знаходження мінімального
+		function getMin(arr) {
+			return Math.min(...arr)
+		}
+		const minScore = getMin(studentSubjects)
+		//функція для категоризації
+		function wichCategory(arr, min) {
+			for (let i = 0; i <= arr.length; i++) {
+				switch (min) {
+					case 1:
+					case 2: return 'Двійочник'
+					case 3: return 'Трійочник'
+					case 4: return 'Хорошист'
+					case 5: return 'Відмінник'
+				}
+			}
+		} 
+		const averageGrade = getAverageGrade(studentSubjects)
+		const studentCategory = wichCategory(studentSubjects, minScore)
+		document.write(`<p>Середній бал: <span>${averageGrade}</span>. Учень є <span>${studentCategory}</span>.</p>`)
+	</script>
+</body>
+</html>

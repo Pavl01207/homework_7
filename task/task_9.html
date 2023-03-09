@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Task 9</title>
+</head>
+
+<body>
+	<script>
+		/*Морський бій. Користувач вводить кількість клітинок одновимірного масиву та кількість одиночних кораблів. 
+		Комп’ютер довільно розміщує ці одиночні кораблі у масиві по один у клітинці 
+		(якщо у клітинці 0, то клітинка пуста, якщо 1 – то це означає, що там є корабель. Користувач вводить номер клітинки, куди стріляє. 
+		Гра продовжується до тих пір, поки не будуть потоплені усі кораблі.*/
+		const userNumberCells = parseInt(prompt('Введіть кількість клітинок'))
+		const userUnitarySheeps = parseInt(prompt('Введіть кількість кораблів'))
+		//створюємо  масив заповнений нулями із зазначеної кількості клітинок
+		function makeGameField(number) {
+			let arr = []
+			for (let i = 0; i < number; i++) {
+				arr.push(0)
+			}
+			return arr
+		}
+		const gameField = makeGameField(userNumberCells)
+		//випадковим чином наповнюємо комірки одиночними кораблями
+		function makeUnitaryPosition(arr, number) {
+			for (let i = 0; i < number; i++) {
+				let randomNumber = Math.floor(Math.random() * arr.length)
+				arr[randomNumber] = 1
+			}
+			return arr
+		}
+		const gameFieldWithSheeps = makeUnitaryPosition(gameField, userUnitarySheeps)
+		//створюємо функцію для пострілів
+		function makeShots(arr) {
+			let counter = 0
+			for (let i = 0; i < arr.length; i++) {
+				let userShot = parseInt(prompt('Введіть номер клітинки для пострілу'))
+				if (arr[userShot] === 1) counter++
+			}
+			return counter
+		}
+		const resultShots = makeShots(gameFieldWithSheeps)
+		document.write(`<p>Вдалих пострілів здійснено: <span>${resultShots}</span>.</p>`)
+	</script>
+</body>
+</html>

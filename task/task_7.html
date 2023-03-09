@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Task 7</title>
+</head>
+
+<body>
+	<script>
+		/*Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:
+		1)	за весь рік;
+		2)	у першій половині року;
+		3)	у другій половині року;
+		4)	за літо;
+		5)	за ІІ квартал;
+		6)	за парні місяці (з парними номерами);
+		7)	за місяці, які є початковими у сезоні (весна, літо, осінь, зима).*/
+		//створюємо масив
+		function inputArray(number) {
+			let arr = []
+			for (let i = 0; i < number; i++) {
+				const price = parseFloat(prompt(`Введіть платіж за ${i+1} місяць`))
+				arr.push(price)
+			}
+			return arr
+		}
+		const yearPayment = inputArray(12)
+		//функція для знаходження загальної суми
+		function getsummOfYear(arr) {
+			let summ = 0
+			for (let i = 0; i < arr.length; i++) {
+				summ+=arr[i]
+			}
+			return summ
+		}
+		const summOfYear = getsummOfYear(yearPayment)
+		//функція для знаходження суми платіжок за першу половину року
+		function getSummFirstHalfYear(arr) {
+			let summ = 0
+			for (let i = 0; i < 6; i++) {
+				summ+=arr[i]
+			}
+			return summ
+		}
+		const summOfFirstHalfYear = getSummFirstHalfYear(yearPayment)
+		//функція для знаходження за другу половину року
+		function getSummSecondHalfYear(arr) {
+			let summ = 0
+			for (let i = 6; i < 12; i++) {
+				summ+=arr[i]
+			}
+			return summ
+		}
+		const summOfSecondHalfYear = getSummSecondHalfYear(yearPayment)
+		//функція для знаходження за за літо
+		function getSummOnSummer(arr) {
+			let summ = 0
+			for (let i = 6; i < 9; i++) {
+				summ+=arr[i]
+			}
+			return summ
+		}
+		const summOnSummer = getSummOnSummer(yearPayment)
+		//функція для знаходження за II квартал
+		function getSummSecondQvarta(arr) {
+			let summ = 0
+			for (let i = 4; i < 7; i++) {
+				summ+=arr[i]
+			}
+			return summ
+		}
+		const summSecondQvarta = getSummSecondQvarta(yearPayment)
+		//функція для знаходження суми за парні місяці
+		function getSummEvenMonth(arr) {
+			let summ = 0
+			for (let i = 0; i < arr.length; i++) {
+				if (arr[i]%2 === 0) summ+=arr[i]
+			}
+			return summ
+		}
+		const summEvenMonth = getSummEvenMonth(yearPayment)
+		//функція для знаходження суми за місяці, які є початковими у сезоні (весна, літо, осінь, зима)
+		function getSummMonthStartSeason(arr) {
+			let summ = 0
+			for (let i = 0; i < arr.length; i++) {
+				if (arr[i] === 3 || arr[i] === 6 || arr[i] === 9 || arr[i] === 12) summ+=arr[i]
+			}
+			return summ
+		}
+		const summMonthStartSeason = getSummMonthStartSeason(yearPayment)
+		document.write(`<p>Кількість грошей за увесь рік: <span>${summOfYear}</span><br>
+			Кількість грошей за першу половину року: <span>${summOfFirstHalfYear}</span><br>
+			Кількість грошей за другу половину року: <span>${summOfSecondHalfYear}</span><br>
+			Кількість грошей за літо: <span>${summOnSummer}</span><br>
+			Кількість грошей за ІІ квартал: <span>${summSecondQvarta}</span><br>
+			Кількість грошей за парні місяці: <span>${summEvenMonth}</span><br>
+			Кількість грошей за місяці, що є початком у сезоні: <span>${summMonthStartSeason}</span><br></p>`)
+	</script>
+</body>
+</html>

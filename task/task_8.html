@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Task 8</title>
+</head>
+
+<body>
+	<script>
+		/*Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином значеннями від -500 до 500).
+		Надаючи користувачу можливість вибирати номери елементів  (поки він не відмовиться). Знаходити сумарний виграш.*/
+		const numberCell = parseInt(prompt('Введіть кількість лотерейних комірок'))
+		//наповнення масиву
+		function inputArray(number) {
+			let arr = []
+			for (let i = 0; i < number; i++) {
+				const randomCell = -500 + Math.floor(Math.random() * (500 - (-500) + 1))
+				arr.push(randomCell)
+			}
+			return arr
+		}
+		const lotteryCell = inputArray(numberCell)
+		//функція для вибору номера елемента
+		function getSummVictory(arr) {
+			let summ = 0
+			for (;;) {
+				let userNumber = parseInt(prompt('Введіть номер комірки'))
+				if (!userNumber) break
+				summ+=arr[userNumber - 1]
+			}
+			return summ
+		}
+		const userResult = getSummVictory(lotteryCell)
+		document.write(`<p>Ваш виграш становить: <span>${userResult}</span>.</p>`)
+	</script>
+</body>
+</html>

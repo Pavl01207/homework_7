@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Task 5</title>
+</head>
+
+<body>
+	<script>
+		/* Дано послідовність оцінок учня. Підрахувати кількість:
+		1)	двійок
+		2)	кількість хороших оцінок (добре, відмінно);
+		3)	кількість оцінок, які нижче середнього.*/
+		//створюємо масив із оцінками
+		const numbersSubject = parseInt(prompt('Кількість предметів'))
+		function inputArray(number) {
+			let arr = []
+			for (let i = 0; i < number; i++) {
+				let grade = parseInt(prompt(`Оцінка за ${i+1} предмет`))
+				arr.push(grade)
+			}
+			return arr
+		}
+		const  studentGrades = inputArray(numbersSubject)
+		//функція для знаходження кількіості хороших оцінок
+		function getGoodGrades(arr) {
+			let counterGoodGrades = 0
+			for (let i = 0; i < arr.length; i++) {
+				if (arr[i] >= 4) counterGoodGrades++
+			}
+			return counterGoodGrades
+		}
+		const goodGrades = getGoodGrades(studentGrades)
+		//функція для знаходження середнього
+		function getAverageGrade(arr) {
+			let sum = 0
+			for (let i = 0; i < arr.length; i++) {
+				sum+=arr[i]
+			}
+			return sum / arr.length
+		}
+		const averageGrade = getAverageGrade(studentGrades)
+		//знаходимо кількість оцінок нижче за середнє
+		function getGradesLessThanAverage(arr) {
+			let counterLessAverage = 0
+			for (let i = 0; i < arr.length; i++) {
+				if (arr[i] < averageGrade) counterLessAverage++
+			}
+			return counterLessAverage
+		}
+		const gradesLessAverage = getGradesLessThanAverage(studentGrades)
+		//функція для знаходження кількості двійок
+		function getTwo(arr) {
+			let counterGradesTwo = 0
+			for (let i = 0; i < arr.length; i++) {
+				if (arr[i] === 2) counterGradesTwo++
+			}
+			return counterGradesTwo
+		}
+		const gradeTwo = getTwo(studentGrades)
+		//виводимо результат
+		document.write(`<p>Оцінки: <span>${studentGrades}</span>.<br>
+			Кількість двійок: <span>${gradeTwo}</span>.<br>
+			Кількість хороших оцінок: <span>${goodGrades}</span>.<br>
+			Кількість оцінок нижче середеього: <span>${gradesLessAverage}</span>.</p>`)
+	</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>Task 4</title>
+</head>
+
+<body>
+	<script>
+		/* Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які : 
+		• починаються на букву «А»; 
+		• перша і остання літери співпадають; 
+		• складаються з більше ніш 5 символів;*/
+		//довільний масив із автомобільними номерами
+		const carsNumbers = [['F','A',4,5,3,2,'G','T'], ['G','G',5,5,6,7,'H','J'], ['G','G','T',5,4,5,5,'G'], ['A','A',1,2,9,0,'R','A'], ['F','A',5,5,6,7,'F','F']]
+		//функція для підрахунку номерів, що починаються на А
+		function haveA(arr) {
+			let counter = 0
+			for(let i = 0; i < arr.length; i++) {
+				if (arr[i][0] === 'A') counter++
+			}
+			return counter
+		}
+		const numbersWithA = haveA(carsNumbers)
+		//функція для підрахунку номерів, в яких перша і остання літери співпадають
+		function isEqualFirstAndLast(arr) {
+			let counter = 0
+			for (let i = 0; i < arr.length; i++) {
+				if (arr[i][0] === arr[i][7]) counter++
+			}
+			return counter
+		}
+		const equalFirstLast = isEqualFirstAndLast(carsNumbers)
+		//функція для підрахунку номерів,які складаються з більше ніш 5 символів
+		function moreThanFiveNumbers(arr) {
+			let counter = 0
+			for (let i = 0; i < arr.length; i++) {
+				if (arr[i].length > 5) counter++
+			}
+			return counter
+		}
+		const moreThanFive = moreThanFiveNumbers(carsNumbers)
+		document.write(`<p>Кількість номерів,що починаються на 'А': <span>${numbersWithA}</span><br>
+			Кількість номерів,в яких перша і остання літери співпадають: <span>${equalFirstLast}</span><br>
+			Кількість номерів,які складаються з більше ніш 5 символів: <span>${moreThanFive}</span><br>
+			</p>`)
+	</script>
+</body>
+</html>
